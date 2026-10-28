@@ -1,12 +1,13 @@
 # predeploy-checks
 
-**Checks for code you did not fully write.**
+Five pre-deploy checks for AI-built apps. For code you did not fully write.
 
-Agent skills for Claude Code, Cursor, and Codex. Five checks cover what an AI-built app actually ships, whether its tests prove anything, what a change breaks, whether client, server, and env agree, and whether the preview works.
-
+[![agent skills](https://img.shields.io/badge/agent%20skills-5-6f42c1)](#the-matrix)
 [![checks](https://github.com/Tygors/predeploy-checks/actions/workflows/checks.yml/badge.svg)](https://github.com/Tygors/predeploy-checks/actions/workflows/checks.yml)
+[![release](https://img.shields.io/github/v/release/Tygors/predeploy-checks)](https://github.com/Tygors/predeploy-checks/releases)
+[![license: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**No telemetry. No uploads. Local-only.**
+Works with Claude Code, Cursor, and Codex. No telemetry. No uploads. Local-only.
 
 ## See it in action
 

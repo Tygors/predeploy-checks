@@ -7,11 +7,11 @@ Every value in the generated output is fake. Do not use any of it.
 
 Local build scan:
 
-![Local build scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-local.gif)
+![Local build scan](https://github.com/Tygors/predeploy-checks/releases/download/v0.1.0/secret-leak-check-local.gif)
 
 Preview URL scan:
 
-![Preview URL scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-url.gif)
+![Preview URL scan](https://github.com/Tygors/predeploy-checks/releases/download/v0.1.0/secret-leak-check-url.gif)
 
 The replays come from real Claude Code sessions; tool output is condensed.
 

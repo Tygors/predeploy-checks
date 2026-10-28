@@ -6,17 +6,17 @@ The latest release on `main` is supported. Older commits are handled on a best-e
 
 ## Reporting a vulnerability
 
-Please do not open a public issue for a vulnerability in the skill itself.
+Please do not open a public issue for a vulnerability in a skill itself.
 
 Use GitHub's private vulnerability reporting:
 
-https://github.com/Tygors/secret-leak-check/security/advisories/new
+https://github.com/Tygors/predeploy-checks/security/advisories/new
 
 Include:
 
-- the affected version or commit
+- the affected skill, version, or commit
 - the agent and version (Claude Code, Cursor, or Codex)
-- the target type (preview URL or build directory)
+- the target type (preview URL, build directory, or repository)
 - the redacted output and a minimal reproduction
 - the impact you expect
 
@@ -24,23 +24,28 @@ Include:
 
 In scope:
 
-- command or instruction injection in the skill
+- command or instruction injection in a skill
 - redaction failures that could expose a secret
 - allowlist mistakes that hide a real secret
-- unexpected file writes, network calls, or data uploads
+- instructions that cause unexpected file writes, network calls, data uploads, or code execution
+- test commands that reach production services or install packages without the user's consent
 
 Out of scope:
 
 - a secret found in your application. That is a finding, not a vulnerability in this tool. Report it with the False positive or Missed secret issue template.
-- secrets in git history. This skill scans shipped output, not history.
+- secrets in git history. `secret-leak-check` scans shipped output, not history.
+- a test audit classification you disagree with. Use the Test audit feedback template.
+- vulnerabilities in the project being audited. Report those to that project.
 
 ## Data handling
 
-The skill is local-only. It has no telemetry and uploads nothing. It should only read the target you name.
+The skills are local-only. They have no telemetry and upload nothing. They should only read the target you name.
+
+`test-audit` runs the project's existing test command when one is available. Tests execute repository code and may use network, databases, or credentials. Run the audit only in a local checkout you trust, and review any test command before allowing it to run.
 
 ## Never paste real secrets
 
-Redact every key and token before posting an issue or advisory. If a real credential was exposed, rotate it first.
+Redact every key and token before posting an issue or advisory. Do not paste production data or personal data. If a real credential was exposed, rotate it first.
 
 ## Response
 

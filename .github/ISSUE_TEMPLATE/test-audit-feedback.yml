@@ -1,0 +1,56 @@
+name: Test audit feedback
+description: The audit missed a weak test or misjudged one.
+title: "[test-audit] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not paste secrets, personal data, or production data.** Use minimal fake examples.
+  - type: input
+    id: test_command
+    attributes:
+      label: Test command
+      description: The command the audit ran, or would have run.
+      placeholder: npm test / pytest / python -m unittest
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Test location
+      description: File and line for the test that was missed or misjudged.
+      placeholder: tests/checkout.test.ts:42
+    validations:
+      required: true
+  - type: textarea
+    id: test_code
+    attributes:
+      label: Test code
+      description: The smallest fake version that shows the issue.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the audit said
+      description: The classification or report text.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should have said
+      description: Explain why the test proves little, or why the judgment was wrong.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Skill version or commit
+      placeholder: v0.2.0 or a commit SHA
+  - type: input
+    id: agent
+    attributes:
+      label: Agent and version
+      placeholder: Claude Code 2.x / Cursor 2.x / Codex 0.x

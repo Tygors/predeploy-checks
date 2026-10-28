@@ -17,6 +17,15 @@ out/
 # Logs
 *.log
 
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
 # Local media and social assets
 assets/
 demo/
+
+MATRIX.md

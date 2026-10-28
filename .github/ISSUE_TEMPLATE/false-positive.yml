@@ -1,5 +1,5 @@
-name: False positive
-description: The skill flagged something that is safe to ship.
+name: Secret false positive
+description: secret-leak-check flagged something that is safe to ship.
 title: "[false positive] "
 body:
   - type: markdown

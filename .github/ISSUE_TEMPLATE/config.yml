@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
   - name: Security report
-    url: https://github.com/Tygors/secret-leak-check/security/advisories/new
-    about: Report a vulnerability in the skill itself. Do not open a public issue.
+    url: https://github.com/Tygors/predeploy-checks/security/advisories/new
+    about: Report a vulnerability in a skill itself. Do not open a public issue.
   - name: Usage and demo
-    url: https://github.com/Tygors/secret-leak-check#use
-    about: Install, usage, and the demo fixture.
+    url: https://github.com/Tygors/predeploy-checks#use
+    about: Install, usage, and the demo fixtures.

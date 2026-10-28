@@ -3,6 +3,12 @@
 This directory generates a deliberately leaky build output for demos and tests.
 Every value in the generated output is fake. Do not use any of it.
 
+## Demo
+
+![Local build scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-local.gif)
+
+The replay comes from a real Claude Code session; tool output is condensed.
+
 ## Generate
 
 ```bash

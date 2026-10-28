@@ -63,11 +63,7 @@ Secrets are reported by type and location, never printed in full.
 
 ## Demo
 
-Scanning a local build directory:
-
-![Local build scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-local.gif)
-
-The replays come from real Claude Code sessions; tool output is condensed. To generate the same fixture locally, run `python examples/vulnerable/make_demo.py` and scan `./examples/vulnerable/dist`.
+The preview URL scan is above. For a local build scan, see [examples/vulnerable](examples/vulnerable/README.md); the fixture is generated with `python examples/vulnerable/make_demo.py`.
 
 ## What it checks
 

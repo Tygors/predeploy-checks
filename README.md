@@ -109,6 +109,12 @@ For the preview URL scan and the safe fixture, see [examples/vulnerable](example
 
 Test audit on a suite that passes but proves little:
 
+![Test audit demo](https://github.com/Tygors/predeploy-checks/releases/download/v0.2.0/test-audit.gif)
+
+*Replay built from the fixture; output condensed.*
+
+Run the fixture yourself:
+
 ```bash
 python -m unittest discover -s examples/weak-tests -v
 ```

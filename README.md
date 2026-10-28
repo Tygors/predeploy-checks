@@ -31,16 +31,18 @@ One `SKILL.md` works in all three tools.
 
 | Tool | Install |
 |---|---|
-| Claude Code | `mkdir -p ~/.claude/skills && cp -r secret-leak-check ~/.claude/skills/` |
-| Cursor | `mkdir -p ~/.cursor/skills && cp -r secret-leak-check ~/.cursor/skills/` |
-| Codex | `mkdir -p ~/.codex/skills && cp -r secret-leak-check ~/.codex/skills/` |
+| Claude Code | `mkdir -p ~/.claude/skills && cp -r skills/secret-leak-check ~/.claude/skills/` |
+| Cursor | `mkdir -p ~/.cursor/skills && cp -r skills/secret-leak-check ~/.cursor/skills/` |
+| Codex | `mkdir -p ~/.codex/skills && cp -r skills/secret-leak-check ~/.codex/skills/` |
+
+The skill lives in `skills/secret-leak-check/`; `examples/` is only the demo fixture and is not installed.
 
 Cursor also reads `~/.claude/skills/` and `~/.codex/skills/`, so a single Claude Code install is usually enough for both Cursor and Claude Code.
 
 On Windows, run the commands in Git Bash, or copy the folder with PowerShell:
 
 ```powershell
-Copy-Item -Recurse . "$HOME\.claude\skills\secret-leak-check"
+Copy-Item -Recurse .\skills\secret-leak-check "$HOME\.claude\skills\secret-leak-check"
 ```
 
 ## Use
@@ -53,7 +55,7 @@ or:
 
 > Scan ./dist for leaked secrets and source maps before I ship.
 
-The skill runs the deterministic checks in `references/checks.md` and returns:
+The skill runs the deterministic checks in `skills/secret-leak-check/references/checks.md` and returns:
 
 - FAIL -- do not deploy
 - WARN -- deploy with fixes

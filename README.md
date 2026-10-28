@@ -83,6 +83,10 @@ The local build scan is above. For the preview URL scan and the safe fixture, se
 
 If this catches one leak before it ships, a star helps someone else find it.
 
+## Contributing
+
+Reports of false positives and missed patterns are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the issue templates.
+
 ## License
 
 MIT

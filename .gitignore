@@ -16,3 +16,6 @@ out/
 
 # Logs
 *.log
+
+# Local media and social assets
+assets/

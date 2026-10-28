@@ -2,17 +2,30 @@
 
 **Checks for code you did not fully write.**
 
-Agent skills for Claude Code, Cursor, and Codex. They inspect what an AI-built app actually ships and whether its tests actually prove anything, then explain the result in plain language before users find out.
+Agent skills for Claude Code, Cursor, and Codex. Five checks cover what an AI-built app actually ships, whether its tests prove anything, what a change breaks, whether client, server, and env agree, and whether the preview works.
+
+[![checks](https://github.com/Tygors/predeploy-checks/actions/workflows/checks.yml/badge.svg)](https://github.com/Tygors/predeploy-checks/actions/workflows/checks.yml)
 
 **No telemetry. No uploads. Local-only.**
+
+## See it in action
+
+The suite is green here, but four of its five tests do not prove the behavior they name:
+
+![Test audit demo](https://github.com/Tygors/predeploy-checks/releases/download/v0.2.0/test-audit.gif)
+
+*Replay built from the fixture; output condensed.*
+
+[More demos](#demo) · [Install](#install)
 
 ## The problem
 
 Vibe coding makes the first version cheap. The expensive part comes later:
 
+- The test suite is green because every test mocks the thing it is supposed to check.
+- The preview returns 200 but renders a blank page.
 - A key ends up in the client bundle or a public preview.
 - A source map lets anyone rebuild the source.
-- The test suite is green because every test mocks the thing it is supposed to check.
 - A change breaks a flow that no test covers, and nothing tells you.
 
 If you build with AI and cannot review every line, "it works" is not evidence. These checks read the evidence for you.
@@ -117,6 +130,8 @@ Verdicts: `FAIL`, `WARN`, or `PASS`. It does not log in, click through flows, or
 
 ## Demo
 
+The test-audit demo is [above](#see-it-in-action). The other checks:
+
 Secret scan on a local build:
 
 ![Local build scan](https://github.com/Tygors/predeploy-checks/releases/download/v0.1.0/secret-leak-check-local.gif)
@@ -124,20 +139,6 @@ Secret scan on a local build:
 *Recorded from a real Claude Code session; output condensed.*
 
 For the preview URL scan and the safe fixture, see [examples/vulnerable](examples/vulnerable/README.md).
-
-Test audit on a suite that passes but proves little:
-
-![Test audit demo](https://github.com/Tygors/predeploy-checks/releases/download/v0.2.0/test-audit.gif)
-
-*Replay built from the fixture; output condensed.*
-
-Run the fixture yourself:
-
-```bash
-python -m unittest discover -s examples/weak-tests -v
-```
-
-Then ask your agent to audit the tests. The fixture and the expected findings are in [examples/weak-tests](examples/weak-tests/README.md).
 
 Regression check on a change set:
 
@@ -179,6 +180,20 @@ python examples/preview-demo/server.py 8000
 
 Then ask your agent to check `http://localhost:8000` before you promote it. The homepage returns 200 but renders an empty root, the main script 404s, and a linked route returns 500. The expected findings are in [examples/preview-demo](examples/preview-demo/README.md). Stop the server with `Ctrl+C`.
 
+## Why not just use X?
+
+These checks complement existing tools; they do not replace them.
+
+| Instead of | It does | What it misses here |
+|---|---|---|
+| gitleaks / detect-secrets | scans git history and repository files | secrets that appear only in built output or a preview URL; exposed source maps |
+| Playwright / Cypress | drives real user flows | whether a preview is blank, the main script 404s, or a route returns 500, without writing a suite |
+| coverage | counts lines that ran | a line can run with no assertion; green tests can still be theater |
+| linters / type checkers | syntax and types | renamed response fields, missing routes, undeclared env vars, untested diffs |
+| CI | runs what you configure | choosing the checks and explaining the findings in plain language |
+
+Keep gitleaks for history, Playwright for critical flows, and coverage as a signal. Use these checks as the pre-deploy gate.
+
 ## Design rules
 
 - One question per check.
@@ -196,7 +211,9 @@ Then ask your agent to check `http://localhost:8000` before you promote it. The 
 
 ## Contributing
 
-Reports of false positives, missed findings, and weak tests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the issue templates.
+Reports of false positives, missed findings, and weak tests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) and the issue templates. Looking for a first contribution? See the [good first issues](https://github.com/Tygors/predeploy-checks/labels/good%20first%20issue).
+
+If a check saves you a deploy, a star helps someone else find it. If it misses something, open an issue.
 
 ## License
 

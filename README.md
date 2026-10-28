@@ -27,7 +27,7 @@ Made for indie hackers, designers, product people, and developers working outsid
 | [test-audit](skills/test-audit/SKILL.md) | Do the tests actually prove anything? | Before merge | Available |
 | [regression-check](skills/regression-check/SKILL.md) | What did this change break? | Before merge | Available |
 | [contract-check](skills/contract-check/SKILL.md) | Do the frontend, backend, and environment still agree? | Before deploy | Available |
-| deploy-smoke-check | Does the live preview actually work? | After deploy | Later |
+| [preview-check](skills/preview-check/SKILL.md) | Does the preview work before production? | After preview deploy, before production | Available |
 
 ## Install
 
@@ -109,6 +109,12 @@ Compares frontend API calls with backend routes, and env vars with their declara
 
 Verdicts: `IN SYNC`, `DRIFT`, `BROKEN`, or `NO CONTRACT`. It is static by default and does not need a running server; response fields are only checked when an OpenAPI schema or contract test exists.
 
+### preview-check
+
+Checks a preview deployment before you promote it: critical routes, same-origin scripts and stylesheets, the rendered DOM in headless Chrome, error pages, blank app roots, mixed content, and unexpected login redirects.
+
+Verdicts: `FAIL`, `WARN`, or `PASS`. It does not log in, click through flows, or capture console/network errors; those need a browser driver. It is the last gate before production, not a production monitor.
+
 ## Demo
 
 Secret scan on a local build:
@@ -159,6 +165,14 @@ Then ask your agent:
 
 No server or install is needed. The client calls a route the backend does not define, and a required env var is undeclared. The expected findings are in [examples/contract-demo](examples/contract-demo/README.md).
 
+Preview check on a broken local preview:
+
+```bash
+python examples/preview-demo/server.py 8000
+```
+
+Then ask your agent to check `http://localhost:8000` before you promote it. The homepage returns 200 but renders an empty root, the main script 404s, and a linked route returns 500. The expected findings are in [examples/preview-demo](examples/preview-demo/README.md). Stop the server with `Ctrl+C`.
+
 ## Design rules
 
 - One question per check.
@@ -171,8 +185,8 @@ No server or install is needed. The client calls a route the backend does not de
 
 ## Roadmap
 
-- `deploy-smoke-check`: verify pages, console errors, and key flows on a live preview.
 - An optional CLI to run the matrix in one command.
+- A browser-driven mode for console errors, failed network requests, and authenticated flows.
 
 ## Contributing
 

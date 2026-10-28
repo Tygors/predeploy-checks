@@ -1,0 +1,48 @@
+name: Preview check feedback
+description: The preview check missed a broken page or reported a false failure.
+title: "[preview-check] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not paste secrets, tokens, personal data, or signed URLs.** Remove query strings that may contain credentials.
+  - type: input
+    id: url
+    attributes:
+      label: Preview URL
+      description: The origin you checked, with secrets and signed query strings removed.
+      placeholder: https://example-preview.vercel.app
+    validations:
+      required: true
+  - type: input
+    id: check
+    attributes:
+      label: Page and check
+      description: The path and the check that missed or misfired.
+      placeholder: /checkout - render / asset / mixed content
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the check said
+      description: The verdict or finding text.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should have said
+      description: What the preview actually showed, with evidence that is safe to share.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Skill version or commit
+      placeholder: v0.3.2 or a commit SHA
+  - type: input
+    id: agent
+    attributes:
+      label: Agent and version
+      placeholder: Claude Code 2.x / Cursor 2.x / Codex 0.x

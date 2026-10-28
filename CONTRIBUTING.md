@@ -63,6 +63,17 @@ These rules apply to `contract-check`.
 - Do not claim response fields disagree without an OpenAPI schema or contract test.
 - Add static drift examples to `examples/contract-demo/`, not to a real project.
 
+## Preview check
+
+These rules apply to `preview-check`.
+
+- Scan only the origin the user names. Do not follow other origins.
+- Use GET and HEAD only. Do not log in, submit forms, click through flows, or mutate data.
+- Keep the limits: 10 pages total, 30 assets total, 15 seconds per request.
+- Do not claim console or network checks unless a browser driver actually captured them.
+- Localhost over HTTP is not a mixed-content situation.
+- Add broken previews to `examples/preview-demo/`, not to a real deployment.
+
 ## Adding a check
 
 1. Create `skills/<check-name>/SKILL.md` with frontmatter, when-to-use, rules, a workflow, and one verdict line.
@@ -125,6 +136,18 @@ Contract check:
 ```
 
 The fixture is static; no server or dependency is needed. The expected findings are in `examples/contract-demo/README.md`.
+
+Preview check:
+
+```bash
+python examples/preview-demo/server.py 8000
+```
+
+In another terminal, ask your agent:
+
+> Check http://localhost:8000 before I promote it.
+
+The fixture and expected findings are in `examples/preview-demo/README.md`. Stop the server with `Ctrl+C`.
 
 ## Pull requests
 

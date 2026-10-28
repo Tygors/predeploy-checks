@@ -167,6 +167,12 @@ No server or install is needed. The client calls a route the backend does not de
 
 Preview check on a broken local preview:
 
+![Preview check demo](https://github.com/Tygors/predeploy-checks/releases/download/v0.3.2/preview-check.gif)
+
+*Replay built from the fixture; output condensed.*
+
+Run it:
+
 ```bash
 python examples/preview-demo/server.py 8000
 ```

@@ -149,6 +149,12 @@ Then ask your agent to review the change before you merge. Both versions pass th
 
 Contract check on a static frontend/backend/env fixture:
 
+![Contract check demo](https://github.com/Tygors/predeploy-checks/releases/download/v0.3.1/contract-check.gif)
+
+*Replay built from the fixture; output condensed.*
+
+Then ask your agent:
+
 > Check whether the frontend, backend, and environment agree in examples/contract-demo.
 
 No server or install is needed. The client calls a route the backend does not define, and a required env var is undeclared. The expected findings are in [examples/contract-demo](examples/contract-demo/README.md).

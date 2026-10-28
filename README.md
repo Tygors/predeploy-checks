@@ -129,6 +129,12 @@ Then ask your agent to audit the tests. The fixture and the expected findings ar
 
 Regression check on a change set:
 
+![Regression check demo](https://github.com/Tygors/predeploy-checks/releases/download/v0.3.0/regression-check.gif)
+
+*Replay built from the fixture; output condensed.*
+
+Run the diff yourself:
+
 ```bash
 git diff --no-index -- examples/regression-demo/before examples/regression-demo/after -- '*.py'
 ```

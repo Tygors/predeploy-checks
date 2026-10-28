@@ -41,6 +41,17 @@ These rules apply to `test-audit`.
 - Do not treat line coverage as proof of behavior.
 - Keep the report understandable to someone who does not write tests for a living.
 
+## Regression check
+
+These rules apply to `regression-check`.
+
+- Review only the change set the user names. Do not audit unrelated code.
+- Cite the new-version line for every finding.
+- A test that mentions a symbol is not coverage. It must call the changed code and assert the changed behavior.
+- Search for consumers when an interface changes: callers, response fields, routes, env vars, migrations.
+- Do not flag a missing test for code the diff did not touch.
+- Add deliberately risky changes to `examples/regression-demo/`, not to a real project.
+
 ## Adding a check
 
 1. Create `skills/<check-name>/SKILL.md` with frontmatter, when-to-use, rules, a workflow, and one verdict line.
@@ -82,6 +93,19 @@ Then ask your agent:
 > Audit the tests in examples/weak-tests. They pass, but I don't trust them.
 
 The expected audit is described in `examples/weak-tests/README.md`.
+
+Regression check:
+
+```bash
+git diff --no-index -- examples/regression-demo/before examples/regression-demo/after -- '*.py'
+python -B -m unittest discover -s examples/regression-demo/after
+```
+
+Then ask your agent:
+
+> Review the change from examples/regression-demo/before to examples/regression-demo/after before I merge.
+
+Both suites pass; the expected findings are described in `examples/regression-demo/README.md`.
 
 ## Pull requests
 

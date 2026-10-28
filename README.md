@@ -25,7 +25,7 @@ Made for indie hackers, designers, product people, and developers working outsid
 |---|---|---|---|
 | [secret-leak-check](skills/secret-leak-check/SKILL.md) | What does the shipped output expose? | Before deploy | Available |
 | [test-audit](skills/test-audit/SKILL.md) | Do the tests actually prove anything? | Before merge | Available |
-| regression-check | What did this change break? | Before merge | Planned |
+| [regression-check](skills/regression-check/SKILL.md) | What did this change break? | Before merge | Available |
 | contract-check | Do the frontend, backend, and environment still agree? | Before deploy | Planned |
 | deploy-smoke-check | Does the live preview actually work? | After deploy | Later |
 
@@ -97,6 +97,12 @@ It also maps critical behaviors such as login, payment, and data writes to the t
 
 Verdicts: `TRUSTWORTHY`, `PARTIAL`, `THEATER` (green, but not proving the critical path), or `NO TESTS`. It does not rewrite tests, and it does not treat line coverage as proof.
 
+### regression-check
+
+Reviews only the current change set, then maps changed behavior to the tests and consumers that exercise it. It flags behavior that changed without a test, and breaking interfaces: a renamed response field, a removed flag, a new required env var, or a destructive migration.
+
+Verdicts: `SAFE`, `REVIEW`, `BLOCK`, or `NO CHANGES`. It does not audit the whole suite; use `test-audit` for that.
+
 ## Demo
 
 Secret scan on a local build:
@@ -121,6 +127,14 @@ python -m unittest discover -s examples/weak-tests -v
 
 Then ask your agent to audit the tests. The fixture and the expected findings are in [examples/weak-tests](examples/weak-tests/README.md).
 
+Regression check on a change set:
+
+```bash
+git diff --no-index -- examples/regression-demo/before examples/regression-demo/after -- '*.py'
+```
+
+Then ask your agent to review the change before you merge. Both versions pass their tests; one consumer is still broken. The expected findings are in [examples/regression-demo](examples/regression-demo/README.md).
+
 ## Design rules
 
 - One question per check.
@@ -133,7 +147,6 @@ Then ask your agent to audit the tests. The fixture and the expected findings ar
 
 ## Roadmap
 
-- `regression-check`: map a diff to affected tests and flag changed behavior with no test.
 - `contract-check`: find drift between frontend calls, backend routes, and environment variables.
 - `deploy-smoke-check`: verify pages, console errors, and key flows on a live preview.
 - An optional CLI to run the matrix in one command.

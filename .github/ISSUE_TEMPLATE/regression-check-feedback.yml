@@ -1,0 +1,56 @@
+name: Regression check feedback
+description: The regression check missed a breaking change or misjudged a change.
+title: "[regression-check] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not paste secrets, personal data, or production data.** Use a minimal fake example.
+  - type: input
+    id: scope
+    attributes:
+      label: Change scope
+      description: What the check reviewed.
+      placeholder: working tree / branch vs main / commit SHA / before -> after
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Changed line
+      description: The new-version file and line for the missed or misjudged change.
+      placeholder: src/checkout.py:42
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Change summary
+      description: The smallest fake diff that shows the issue.
+      render: diff
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the check said
+      description: The verdict or finding text.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should have said
+      description: Explain the consumer, test, or boundary that was missed.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Skill version or commit
+      placeholder: v0.3.0 or a commit SHA
+  - type: input
+    id: agent
+    attributes:
+      label: Agent and version
+      placeholder: Claude Code 2.x / Cursor 2.x / Codex 0.x

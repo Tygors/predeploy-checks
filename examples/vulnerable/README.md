@@ -5,9 +5,15 @@ Every value in the generated output is fake. Do not use any of it.
 
 ## Demo
 
+Local build scan:
+
 ![Local build scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-local.gif)
 
-The replay comes from a real Claude Code session; tool output is condensed.
+Preview URL scan:
+
+![Preview URL scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-url.gif)
+
+The replays come from real Claude Code sessions; tool output is condensed.
 
 ## Generate
 

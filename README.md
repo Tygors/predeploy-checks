@@ -8,9 +8,9 @@ Most secret scanners read your git history. This one reads what goes live.
 
 **No telemetry. No uploads. Local-only.**
 
-![Preview URL scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-url.gif)
+![Local build scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-local.gif)
 
-*Preview URL scan. Recorded from a real Claude Code session; output condensed.*
+*Local build scan. Recorded from a real Claude Code session; output condensed.*
 
 ## Why
 
@@ -63,7 +63,7 @@ Secrets are reported by type and location, never printed in full.
 
 ## Demo
 
-The preview URL scan is above. For a local build scan, see [examples/vulnerable](examples/vulnerable/README.md); the fixture is generated with `python examples/vulnerable/make_demo.py`.
+The local build scan is above. For the preview URL scan and the safe fixture, see [examples/vulnerable](examples/vulnerable/README.md); the fixture is generated with `python examples/vulnerable/make_demo.py`.
 
 ## What it checks
 

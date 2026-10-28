@@ -1,6 +1,6 @@
 # Report template
 
-Keep the report short enough to read once. Start with exactly one verdict line.
+Keep the report short enough to read once. Put exactly one verdict line directly under the header.
 
 Count changed source files after excluding generated, vendored, and lockfiles. Count changed behaviors, not hunks.
 

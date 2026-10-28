@@ -26,7 +26,7 @@ Made for indie hackers, designers, product people, and developers working outsid
 | [secret-leak-check](skills/secret-leak-check/SKILL.md) | What does the shipped output expose? | Before deploy | Available |
 | [test-audit](skills/test-audit/SKILL.md) | Do the tests actually prove anything? | Before merge | Available |
 | [regression-check](skills/regression-check/SKILL.md) | What did this change break? | Before merge | Available |
-| contract-check | Do the frontend, backend, and environment still agree? | Before deploy | Planned |
+| [contract-check](skills/contract-check/SKILL.md) | Do the frontend, backend, and environment still agree? | Before deploy | Available |
 | deploy-smoke-check | Does the live preview actually work? | After deploy | Later |
 
 ## Install
@@ -103,6 +103,12 @@ Reviews only the current change set, then maps changed behavior to the tests and
 
 Verdicts: `SAFE`, `REVIEW`, `BLOCK`, or `NO CHANGES`. It does not audit the whole suite; use `test-audit` for that.
 
+### contract-check
+
+Compares frontend API calls with backend routes, and env vars with their declarations. It catches a client calling a route the server does not define, a method mismatch, and a required variable missing from `.env.example` or deploy config.
+
+Verdicts: `IN SYNC`, `DRIFT`, `BROKEN`, or `NO CONTRACT`. It is static by default and does not need a running server; response fields are only checked when an OpenAPI schema or contract test exists.
+
 ## Demo
 
 Secret scan on a local build:
@@ -141,6 +147,12 @@ git diff --no-index -- examples/regression-demo/before examples/regression-demo/
 
 Then ask your agent to review the change before you merge. Both versions pass their tests; one consumer is still broken. The expected findings are in [examples/regression-demo](examples/regression-demo/README.md).
 
+Contract check on a static frontend/backend/env fixture:
+
+> Check whether the frontend, backend, and environment agree in examples/contract-demo.
+
+No server or install is needed. The client calls a route the backend does not define, and a required env var is undeclared. The expected findings are in [examples/contract-demo](examples/contract-demo/README.md).
+
 ## Design rules
 
 - One question per check.
@@ -153,7 +165,6 @@ Then ask your agent to review the change before you merge. Both versions pass th
 
 ## Roadmap
 
-- `contract-check`: find drift between frontend calls, backend routes, and environment variables.
 - `deploy-smoke-check`: verify pages, console errors, and key flows on a live preview.
 - An optional CLI to run the matrix in one command.
 

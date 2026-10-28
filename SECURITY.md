@@ -34,14 +34,14 @@ Out of scope:
 
 - a secret found in your application. That is a finding, not a vulnerability in this tool. Report it with the False positive or Missed secret issue template.
 - secrets in git history. `secret-leak-check` scans shipped output, not history.
-- a test audit or regression check classification you disagree with. Use the corresponding feedback template.
+- a test audit, regression check, or contract check classification you disagree with. Use the corresponding feedback template.
 - vulnerabilities in the project being audited. Report those to that project.
 
 ## Data handling
 
 The skills are local-only. They have no telemetry and upload nothing. They should only read the target you name.
 
-`test-audit` and `regression-check` run the project's existing test commands when available. Tests execute repository code and may use network, databases, or credentials. Run the audit only in a local checkout you trust, and review any test command before allowing it to run.
+`test-audit`, `regression-check`, and `contract-check` run the project's existing test commands when available. Tests execute repository code and may use network, databases, or credentials. Run the audit only in a local checkout you trust, and review any test command before allowing it to run.
 
 ## Never paste real secrets
 

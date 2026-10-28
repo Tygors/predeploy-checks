@@ -105,7 +105,7 @@ Choose the first verdict that matches:
 
 ## Step 6: Report
 
-Use `references/report.md`. Start with the verdict. List only changes that create risk or need evidence; do not dump the whole diff.
+Use `references/report.md`. Put the verdict directly under the header. List only changes that create risk or need evidence; do not dump the whole diff.
 
 Then list the smallest fixes first:
 

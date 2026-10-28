@@ -1,0 +1,56 @@
+name: Contract check feedback
+description: The contract check missed a mismatch or reported a false one.
+title: "[contract-check] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not paste secrets, personal data, or production data.** Use a minimal fake example.
+  - type: input
+    id: scope
+    attributes:
+      label: Scope
+      description: Frontend and backend roots that were compared.
+      placeholder: frontend/ + backend/ / monorepo app + api
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Client or server file and line involved in the mismatch.
+      placeholder: frontend/api.js:17 or backend/app.py:16
+    validations:
+      required: true
+  - type: textarea
+    id: mismatch
+    attributes:
+      label: What disagrees
+      description: The smallest fake route, field, or env example that shows the issue.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the check said
+      description: The verdict or finding text.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should have said
+      description: Explain the match, method, schema, or env declaration that was missed or misread.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Skill version or commit
+      placeholder: v0.3.1 or a commit SHA
+  - type: input
+    id: agent
+    attributes:
+      label: Agent and version
+      placeholder: Claude Code 2.x / Cursor 2.x / Codex 0.x

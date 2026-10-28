@@ -1,6 +1,6 @@
 # Report template
 
-Use this shape. Keep it short enough to read once. Start with exactly one verdict line.
+Use this shape. Keep it short enough to read once. Put exactly one verdict line directly under the header.
 
 Count skipped tests in `<n> tests`, and report them separately.
 

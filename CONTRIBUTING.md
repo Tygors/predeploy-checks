@@ -52,6 +52,17 @@ These rules apply to `regression-check`.
 - Do not flag a missing test for code the diff did not touch.
 - Add deliberately risky changes to `examples/regression-demo/`, not to a real project.
 
+## Contract check
+
+These rules apply to `contract-check`.
+
+- Compare only statically resolvable methods and paths. Mark dynamic URLs as unresolved.
+- Cite both sides when both exist. For a missing route or undeclared var, cite the existing side and say the other is absent.
+- A path that exists with a different method is a method mismatch, not a missing path.
+- Do not treat public client env prefixes as secrets.
+- Do not claim response fields disagree without an OpenAPI schema or contract test.
+- Add static drift examples to `examples/contract-demo/`, not to a real project.
+
 ## Adding a check
 
 1. Create `skills/<check-name>/SKILL.md` with frontmatter, when-to-use, rules, a workflow, and one verdict line.
@@ -106,6 +117,14 @@ Then ask your agent:
 > Review the change from examples/regression-demo/before to examples/regression-demo/after before I merge.
 
 Both suites pass; the expected findings are described in `examples/regression-demo/README.md`.
+
+Contract check:
+
+```text
+> Check whether the frontend, backend, and environment agree in examples/contract-demo.
+```
+
+The fixture is static; no server or dependency is needed. The expected findings are in `examples/contract-demo/README.md`.
 
 ## Pull requests
 

@@ -103,7 +103,7 @@ Do not demand 100% coverage. Demand that the failures a user would feel are test
 
 ## Step 5: Report
 
-Use the template in `references/report.md`. Start the report with exactly one verdict line, chosen in this order:
+Use the template in `references/report.md`. Put exactly one verdict line directly under the header, chosen in this order:
 
 1. `Verdict: NO TESTS` - no runnable tests were found.
 2. `Verdict: THEATER` - the suite looks green, but no critical behavior has a `PROVES` test (test theater).

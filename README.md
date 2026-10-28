@@ -6,9 +6,24 @@ An agent skill for Claude Code, Cursor, and Codex. It checks what your app actua
 
 Most secret scanners read your git history. This one reads what goes live.
 
+**No telemetry. No uploads. Local-only.**
+
+![Preview URL scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-url.gif)
+
+*Preview URL scan. Recorded from a real Claude Code session; output condensed.*
+
 ## Why
 
 AI coding tools move fast. A key can end up in a client bundle, a preview URL is public by default, and a source map can rebuild your source. These are the things that are invisible until they are dangerous.
+
+### How it compares
+
+| | secret-leak-check | gitleaks / detect-secrets |
+|---|---|---|
+| Scans | built assets and preview URLs | git history and repository files |
+| Source maps | yes, including `sourcesContent` | no |
+| Runs as | Claude Code / Cursor / Codex skill | standalone binary |
+| Best for | pre-deploy gate | commit-time scanning |
 
 ## Install
 
@@ -46,6 +61,14 @@ The skill runs the deterministic checks in `references/checks.md` and returns:
 
 Secrets are reported by type and location, never printed in full.
 
+## Demo
+
+Scanning a local build directory:
+
+![Local build scan](https://github.com/Tygors/secret-leak-check/releases/download/v0.1.0/secret-leak-check-local.gif)
+
+The replays come from real Claude Code sessions; tool output is condensed. To generate the same fixture locally, run `python examples/vulnerable/make_demo.py` and scan `./examples/vulnerable/dist`.
+
 ## What it checks
 
 1. Known API key and token formats in shipped HTML/JS/JSON.
@@ -59,6 +82,8 @@ Secrets are reported by type and location, never printed in full.
 - It does not use entropy scanning; false positives are worse than missing a generic string.
 - It does not upload or store anything.
 - It is not a full security audit.
+
+If this catches one leak before it ships, a star helps someone else find it.
 
 ## License
 
